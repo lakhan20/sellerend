@@ -4,6 +4,9 @@ include "include/sidebar.php";
 include "include/connection.php";
 ?> 
 
+<head>
+  
+</head>
  
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -62,7 +65,38 @@ include "include/connection.php";
           <!-- /.box -->
         </div>
         <!-- /.col -->
-        <div class="col-md-9" align="right">
+        <?php
+         if(isset($_POST['update'])) {
+           echo "updating...";
+           $name=$_POST['name'];
+           $email=$_POST['email'];
+           $gst_number=$_POST['gstnumber'];
+           $pan_number=$_POST['pannumber'];
+           $aadhar_number=$_POST['aadharnumber'];
+           $address=$_POST['address'];
+           $mobile_number=$_POST['mobilenumber'];
+           $id=$_COOKIE["idRegister"];
+
+           $sql="UPDATE user SET name='$name' , email_id='$email' , gst_number='$gst_number' , pancard='$pan_number' , addhar_card=$aadhar_number , address='$address' , mobile_number=$mobile_number where idRegister= $id";
+          $result=mysqli_query($conn,$sql);
+          // echo "---------------------------------".$result;
+           if($result>0){
+           echo'<div class="alert alert-success">
+           <strong>Success!</strong> Data successfully updated!
+         </div>';
+      // header("location:profile.php");
+                  }
+           else{
+            echo'<div class="alert alert-danger">
+            <strong>Success!</strong> Something went wrong while updating...!!
+          </div>';
+           }
+
+          }
+         ?>
+        <!-- //  $sql = "UPDATE employee ". "SET emp_salary = $emp_salary ". 
+        //        "WHERE emp_id = $emp_id" ; -->
+        <div class="col-md-9">
           <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
               <li><b><h1>&nbsp;&nbsp;<u>Update Your Details</h1></b></u></li>
@@ -71,46 +105,61 @@ include "include/connection.php";
               <div class="active tab-pane" id="activity">
 
               <div class="tab-pane" id="settings">
-                <form class="form-horizontal">
+                <form class="form-horizontal" method ="post">
                   <div class="form-group">
                     <label for="inputName" class="col-sm-2 control-label">Name</label>
 
                     <div class="col-sm-10">
-                      <input type="email" class="form-control" id="inputName" placeholder="Name">
+                      <input type="text" class="form-control" id="inputName" value=<?php echo $row['name'];  ?> name="name">
                     </div>
                   </div>
                   <div class="form-group">
                     <label for="inputEmail" class="col-sm-2 control-label">Email</label>
 
                     <div class="col-sm-10">
-                      <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+                      <input type="email" class="form-control" id="inputEmail" value=<?php echo $row['email_id'];  ?> name="email">
                     </div>
                   </div>
                   <div class="form-group">
-                    <label for="inputName" class="col-sm-2 control-label">Name</label>
+                    <label for="inputName" class="col-sm-2 control-label">Gst_number</label>
 
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" id="inputName" placeholder="Name">
+                      <input type="text" class="form-control" id="inputName" value=<?php echo $row['gst_number'];  ?> name="gstnumber"> 
+                    </div>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label for="inputName" class="col-sm-2 control-label">Pan_number</label>
+
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="inputName" value=<?php echo $row['pancard'];  ?> name="pannumber"> 
                     </div>
                   </div>
                   <div class="form-group">
-                    <label for="inputExperience" class="col-sm-2 control-label">Experience</label>
+                    <label for="inputName" class="col-sm-2 control-label">Aadhar_number</label>
 
                     <div class="col-sm-10">
-                      <textarea class="form-control" id="inputExperience" placeholder="Experience"></textarea>
+                      <input type="text" class="form-control" id="inputName" value=<?php echo $row['addhar_card'];  ?> name="aadharnumber"> 
                     </div>
                   </div>
                   <div class="form-group">
-                    <label for="inputSkills" class="col-sm-2 control-label">Skills</label>
+                    <label for="inputExperience" class="col-sm-2 control-label">Address</label>
 
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" id="inputSkills" placeholder="Skills">
+                      <textarea class="form-control" id="inputExperience" name="address"><?php echo $row['address'];  ?></textarea>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputSkills" class="col-sm-2 control-label">Mobile_number</label>
+
+                    <div class="col-sm-10">
+                      <input type="number" class="form-control" id="inputSkills" value=<?php echo $row['mobile_number'];?>  name="mobilenumber" >
                     </div>
                   </div>
       
                   <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                      <button type="submit" class="btn btn-danger">Update</button>
+                      <button type="submit" class="btn btn-danger" name="update">Update</button>
                     </div>
                   </div>
                 </form>
