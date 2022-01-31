@@ -5,7 +5,15 @@ include "include/connection.php";
 ?> 
 
 <head>
-  
+<style>
+  #x{
+    float:right;
+  }
+  #x{
+    float:right;
+  }
+</style>
+ 
 </head>
  
   <!-- Content Wrapper. Contains page content -->
@@ -84,7 +92,7 @@ include "include/connection.php";
            echo'<div class="alert alert-success">
            <strong>Success!</strong> Data successfully updated!
          </div>';
-      // header("location:profile.php");
+        // header("location:home.php");
                   }
            else{
             echo'<div class="alert alert-danger">
@@ -94,14 +102,20 @@ include "include/connection.php";
 
           }
          ?>
+         
+              <script>
+                    function enabledisable(){
+                    document.getElementById("inpt").disabled = true;
+                    }
+                </script>
         <!-- //  $sql = "UPDATE employee ". "SET emp_salary = $emp_salary ". 
         //        "WHERE emp_id = $emp_id" ; -->
-        <div class="col-md-9">
+        <div class="col-md-9" >
           <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
               <li><b><h1>&nbsp;&nbsp;<u>Update Your Details</h1></b></u></li>
             </ul>
-            <div class="tab-content">
+            <div class="tab-content" >
               <div class="active tab-pane" id="activity">
 
               <div class="tab-pane" id="settings">
@@ -109,10 +123,19 @@ include "include/connection.php";
                   <div class="form-group">
                     <label for="inputName" class="col-sm-2 control-label">Name</label>
 
+                    <?php 
+                    function endsbl(){
+                      
+                    }
+                     ?>
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" id="inputName" value=<?php echo $row['name'];  ?> name="name">
+                      <input type="text" class="form-control" id="inpt" value=<?php echo $row['name'];  ?> name="name" >    
+                   
                     </div>
+                    
+                    
                   </div>
+                  
                   <div class="form-group">
                     <label for="inputEmail" class="col-sm-2 control-label">Email</label>
 

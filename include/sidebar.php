@@ -5,7 +5,7 @@
       <!-- Sidebar user panel -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="dist/img/<?php  ?>" class="img-circle" alt="">
+          <img src="" class="" alt="">
         </div>
         <div class="pull-left info">
           <h5><?php echo $row['name'] ;?></h5>
@@ -53,10 +53,10 @@
           </ul>
         </li>
         <li>
-          <a href="pages/widgets.html">
-            <i class="fa fa-th"></i> <span>Widgets</span>
+          <a href="addProduct.php">
+            <i class="fa fa-th"></i> <span>Add Product</span>
             <span class="pull-right-container">
-              <small class="label pull-right bg-green">new</small>
+              <!-- <small class="label pull-right bg-green">new</small> -->
             </span>
           </a>
         </li>

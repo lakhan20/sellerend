@@ -40,8 +40,8 @@ else{
 <style>
   .a{
    
-    margin-left: 20px;
-    float:right;
+    margin-left: 6px;
+    float:left;
     
   }
   
@@ -122,6 +122,9 @@ else{
               <!-- </li> -->
               <!-- Menu Footer-->
               <li class="user-footer">
+              <div class="a">
+                  <a href="bankDetails.php" class="btn btn-default btn-flat">Bank Details</a>
+                </div>
                 <div class="a">
                   <a href="profile.php" class="btn btn-default btn-flat">Profile</a>
                 </div>
