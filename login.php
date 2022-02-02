@@ -78,5 +78,3 @@ echo $_SERVER['REQUEST_METHOD'];
   </div>
 </form>   </div>
 </section><!-- End Hero -->
- 
-

@@ -211,7 +211,48 @@ echo "<br>". $sql;
                     </div>
                     
                   </div>
-                
+                  
+                  <div class="form-group">
+                    <label for="inputName" class="col-sm-2 control-label">Select category :</label>
+
+                    
+                    <div class="col-sm-10">   
+                    
+                <?php
+
+                  $selectcategory="SELECT * FROM category";
+
+                  if($res=mysqli_query($conn,$selectcategory)){
+                    if(mysqli_num_rows($res)>0){
+                   echo' <select class="form-control" name="cat" onchange= select_category(this.value)>
+                        <option disabled selected>Select category </option>
+                   ';
+                   
+                      while($row=mysqli_fetch_array($res)){
+
+                        echo '<option  value='.$row["idcategory"].'>'.$row["categoryname"].'</option>';
+                        //$value= $row['idcategory'];
+                      }
+                   echo '</select>
+                   </div>
+                   </div>';
+
+                    }
+                  }
+
+                ?>
+       
+
+
+                 <div class="form-group">
+                    <label for="inputName" class="col-sm-2 control-label">Select sub-category :</label>
+                    <div class="col-sm-10" id="subcatid">   
+                    <select class="form-control">
+                   <option value="">select </option>
+                    </select>
+                </div>
+                </div>
+
                   <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
                       <button type="submit" class="btn btn-success" name="addproduct">Add product</button>
@@ -233,8 +274,23 @@ echo "<br>". $sql;
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
- <?php
-  include "include/footer.php"
-  ?>
+  <script>
+    function select_category(cat){
+      var xmlhttp=new XMLHttpRequest();
+      xmlhttp.onreadystatechange=function(){
+        if(xmlhttp.readyState==4 && xmlhttp.status==200){
+          document.getElementById("subcatid").innerHTML=xmlhttp.responseText;
+        }
+      };
+      xmlhttp.open("GET","forajax/loadsubcateory.php?categaryid="+cat,true);
+      xmlhttp.send();
 
-  
+
+
+      alert(cat)
+
+    }
+  </script>
+  <?php
+  include "include/footer.php";
+  ?>

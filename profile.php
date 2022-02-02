@@ -204,5 +204,3 @@ include "include/connection.php";
  <?php
   include "include/footer.php"
   ?>
-
-  
