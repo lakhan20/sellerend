@@ -59,7 +59,9 @@ include "include/connection.php";
            $hsn=$_POST['hsn'];
            $gst=$_POST['gst'];
            $id=$_COOKIE["idRegister"];
-           
+          //  $subcatid=$_GET["subcategaryid"];
+           $subcatid=$_POST["subcategoryname"];
+
           if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
             && $imageFileType != "gif" ) {
             echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
@@ -77,8 +79,8 @@ include "include/connection.php";
             }
 
 
-           $sql="INSERT INTO `product`(`name`,`brand`,`minimum_set_qut-pur`,`quantity_of_1_set`,`MRP`,`price`,`description`,`image`,`HSN_code`,`GST_rate`,`subcategory_idsubcategory`, `User_idRegister` )  VALUES ('$pname','$bname',$min_set_per_qty,$qty_per_set,$mrp,$price,'$description','$target_file',$hsn,$gst,1,$id)";
-echo "<br>". $sql;
+           $sql="INSERT INTO `product`(`name`,`brand`,`minimum_set_qut-pur`,`quantity_of_1_set`,`MRP`,`price`,`description`,`image`,`HSN_code`,`GST_rate`,`subcategory_idsubcategory`, `User_idRegister` )  VALUES ('$pname','$bname',$min_set_per_qty,$qty_per_set,$mrp,$price,'$description','$target_file',$hsn,$gst,$subcatid,$id)";
+// echo "<br>". $sql;
                $result=mysqli_query($conn,$sql);
 
         //   echo "---------------------------------".$result;
@@ -224,7 +226,7 @@ echo "<br>". $sql;
 
                   if($res=mysqli_query($conn,$selectcategory)){
                     if(mysqli_num_rows($res)>0){
-                   echo' <select class="form-control" name="cat" onchange= select_category(this.value)>
+                   echo' <select class="form-control" name="cat" onchange="select_category(this.value)">
                         <option disabled selected>Select category </option>
                    ';
                    
@@ -246,7 +248,7 @@ echo "<br>". $sql;
 
                  <div class="form-group">
                     <label for="inputName" class="col-sm-2 control-label">Select sub-category :</label>
-                    <div class="col-sm-10" id="subcatid">   
+                    <div class="col-sm-10" id="subcatid"  >   
                     <select class="form-control">
                    <option value="">select </option>
                     </select>
@@ -276,6 +278,7 @@ echo "<br>". $sql;
   <!-- /.content-wrapper -->
   <script>
     function select_category(cat){
+      alert(cat);
       var xmlhttp=new XMLHttpRequest();
       xmlhttp.onreadystatechange=function(){
         if(xmlhttp.readyState==4 && xmlhttp.status==200){
@@ -284,11 +287,11 @@ echo "<br>". $sql;
       };
       xmlhttp.open("GET","forajax/loadsubcateory.php?categaryid="+cat,true);
       xmlhttp.send();
-
-
-
-      alert(cat)
-
+    }
+    function select_subcategory(subcat){
+      
+      alert(subcat);
+      
     }
   </script>
   <?php

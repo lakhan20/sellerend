@@ -5,16 +5,15 @@
  
 //  echo "hii";
  $categoryid=$_GET["categaryid"];
-
+// echo"<br> <br><br><br>...............????????????????".$categoryid;
  $res=mysqli_query($conn,"select * from subcategory where category_idcategory=$categoryid" );
 
 ?>
-<select class="form-control" name="subcategoryname" id="subcategoryname">
+<select class="form-control" name="subcategoryname" id="subcategoryname"  onchange="select_subcategory(this.value)">
 
 <?php
  while($row=mysqli_fetch_array($res)){
-
-    echo "<option>";
+    echo '<option value='.$row["idsubcategory"].'>';
     echo $row["subcategoryname"];
     echo "</option>";
 }
