@@ -92,7 +92,11 @@ include "include/connection.php";
            echo'<div class="alert alert-success">
            <strong>Success!</strong> Data successfully updated!
          </div>';
-        // header("location:home.php");
+         echo '<script> 
+            window.location.href="home.php"
+          </script>';
+
+         // header("location:home.php");
                   }
            else{
             echo'<div class="alert alert-danger">

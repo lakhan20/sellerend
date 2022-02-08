@@ -1,41 +1,6 @@
 <?php
-// session_start();
 include "connection.php";
-
-// if (empty($_SESSION["u_id"])) 
-// {
-//   //  header("Location: index.php");
-// }
-  // else
-// {
-
-// //           $u_id = $_SESSION["u_id"];
-// //           $u_name =  $_SESSION["u_name"];
-// //           $u_email =  $_SESSION["u_email"];
-// //           $u_address =  $_SESSION["u_address"];
-// //           $u_contact =  $_SESSION["u_contact"];
-// //           $u_image =  $_SESSION["u_image"];
-// //           $isadmin =  $_SESSION["isadmin"];
-// //            $isadmin =  $_SESSION["isadmin"];
-
-if(empty( $_COOKIE["idRegister"] )){
-  header("Location: index.php");
-}
-else{
-  $id=$_COOKIE["idRegister"];
-
-  // $id=1;
-  // include 'admin/partial/db_connect.php';
-  $sql = "Select * from user where idRegister='$id'";
-  $result = mysqli_query($conn,$sql);
-  $num = mysqli_num_rows($result);
-   
-  if($num==1){
-    $row=mysqli_fetch_assoc($result);  
-// ?> 
-
-<!DOCTYPE html>
-<html>
+?>
 <head>
 <style>
   .a{
@@ -44,12 +9,21 @@ else{
     float:left;
     
   }
+  #f{
+   background: #fff;
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100%;
+   z-index: 999px;
+   box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.5);
+     }
   
 </style>
 <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   
-  <title>AdminLTE 2 | Dashboard</title>
+  <title></title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -87,7 +61,7 @@ else{
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
-  <header class="main-header">
+  <header class="main-header" id="f">
     <!-- Logo -->
     <a href="home.php" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
@@ -102,23 +76,42 @@ else{
         <span class="sr-only">Toggle navigation</span>
       </a>
 
-      <div class="navbar-custom-menu">
-        <ul class="nav navbar-nav">
-          <!-- User Account: style can be found in dropdown.less -->
-          <li class="dropdown user user-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <!-- <img src="dist/img" class="user-image" alt="User Image"> -->
-              <span class="hidden-xs"><?php echo "Welcome " .  $row['name'] . "..!!"; ?></span>
-            </a>
-            <ul class="dropdown-menu">
-              <!-- User image -->
-              <!-- <li class="user-header"> -->
-                <!-- <img src="dist/img/<?php #echo $u_image; ?>" class="img-circle" alt="User Image"> -->
+              <?php
 
-                <!-- <p>
-                  <?php# echo $u_name; ?>
+              if(empty( $_COOKIE["idRegister"] )){
+                header("Location: index.php");
+              }
+              else{
+                $id=$_COOKIE["idRegister"];
+
+                
+                $sql = "Select * from user where idRegister='$id'";
+                $result = mysqli_query($conn,$sql);
+                $num = mysqli_num_rows($result);
+                
+                if($num==1){
+                  $row=mysqli_fetch_assoc($result);  
+              
+              echo '
+              <div class="navbar-custom-menu">
+              <ul class="nav navbar-nav">
+                <li class="dropdown user user-menu">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+      
+              <span class="hidden-xs"> Welcome ' .  $row["name"] .' ..!! </span>
+              </a>
+              ';
+            
+            }
+              }
+              ?>
+
+
+            <ul class="dropdown-menu">
+             
+           
                   <small>Member since Nov. 2012</small>
-                </p> -->
+                </p> 
               <!-- </li> -->
               <!-- Menu Footer-->
               <li class="user-footer">
@@ -142,4 +135,4 @@ else{
       </div>
     </nav>
   </header>
-  <!-- <?php }} ?> -->
+  

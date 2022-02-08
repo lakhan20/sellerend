@@ -1,11 +1,5 @@
 <?php
-session_start();
-include 'include/connection.php';
-// remove all session variables
-session_unset();
-
-// destroy the session
-session_destroy();
+        setcookie("idRegister","",time() + 86400,"/");
 
  header("Location: index.php");
 ?>

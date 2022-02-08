@@ -79,7 +79,7 @@ include "include/connection.php";
             }
 
 
-           $sql="INSERT INTO `product`(`name`,`brand`,`minimum_set_qut-pur`,`quantity_of_1_set`,`MRP`,`price`,`description`,`image`,`HSN_code`,`GST_rate`,`subcategory_idsubcategory`, `User_idRegister` )  VALUES ('$pname','$bname',$min_set_per_qty,$qty_per_set,$mrp,$price,'$description','$target_file',$hsn,$gst,$subcatid,$id)";
+           $sql="INSERT INTO `product`(`pname`,`brand`,`minimum_set_qut-pur`,`quantity_of_1_set`,`MRP`,`price`,`description`,`image`,`HSN_code`,`GST_rate`,`subcategory_idsubcategory`, `User_idRegister` )  VALUES ('$pname','$bname',$min_set_per_qty,$qty_per_set,$mrp,$price,'$description','$target_file',$hsn,$gst,$subcatid,$id)";
 // echo "<br>". $sql;
                $result=mysqli_query($conn,$sql);
 
@@ -88,12 +88,19 @@ include "include/connection.php";
            echo'<div class="alert alert-success">
            <strong>Success!</strong> product successfully added!
          </div>';
-        // header("location:home.php");
+
+         echo '<script> 
+            window.location.href="home.php"
+         </script>';
+        //  header("location:home.php");
+        // exit();
                   }
            else{
             echo'<div class="alert alert-danger">
             <strong>Success!</strong> Something went wrong while adding product...!!
-          </div>';
+          </div>
+          '
+          ;
            }
           }
          ?>
@@ -257,7 +264,7 @@ include "include/connection.php";
 
                   <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                      <button type="submit" class="btn btn-success" name="addproduct">Add product</button>
+                      <button href="home.php"  type="submit" class="btn btn-success" name="addproduct">Add product</button>
                     </div>
                   </div>
                 </form>
@@ -296,4 +303,5 @@ include "include/connection.php";
   </script>
   <?php
   include "include/footer.php";
+  // ob_end_flush();
   ?>
