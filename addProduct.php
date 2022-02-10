@@ -79,7 +79,7 @@ include "include/connection.php";
             }
 
 
-           $sql="INSERT INTO `product`(`pname`,`brand`,`minimum_set_qut-pur`,`quantity_of_1_set`,`MRP`,`price`,`description`,`image`,`HSN_code`,`GST_rate`,`subcategory_idsubcategory`, `User_idRegister` )  VALUES ('$pname','$bname',$min_set_per_qty,$qty_per_set,$mrp,$price,'$description','$target_file',$hsn,$gst,$subcatid,$id)";
+           $sql="INSERT INTO `product`(`pname`,`brand`,`minimum_set_qut-pur`,`quantity_of_1_set`,`MRP`,`price`,`description`,`image`,`HSN_code`,`GST_rate`,`subcategory_idsubcategory`, `Seller_idRegister` )  VALUES ('$pname','$bname',$min_set_per_qty,$qty_per_set,$mrp,$price,'$description','$target_file',$hsn,$gst,$subcatid,$id)";
 // echo "<br>". $sql;
                $result=mysqli_query($conn,$sql);
 

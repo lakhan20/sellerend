@@ -2,7 +2,7 @@
 
 include 'partial/header.php';
 
-echo $_SERVER['REQUEST_METHOD'];
+// echo $_SERVER['REQUEST_METHOD'];
 // echo "------------------------------------------------------------";
 // header("location:home.php");
 $login = false;
@@ -36,7 +36,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 
  ?>
  <?php
-echo $_SERVER['REQUEST_METHOD'];
+// echo $_SERVER['REQUEST_METHOD'];
     if($login){
 
         echo "-----------------------------------------------------------------------------------" . $login;

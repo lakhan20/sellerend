@@ -186,7 +186,7 @@ include "include/connection.php";
       
                   <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                      <button type="submit" class="btn btn-danger" name="update">Update</button>
+                      <button type="submit" class="btn btn-success" name="update">Update</button>
                     </div>
                   </div>
                 </form>

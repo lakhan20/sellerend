@@ -83,6 +83,7 @@ include "connection.php";
               }
               else{
                 $id=$_COOKIE["idRegister"];
+               
 
                 
                 $sql = "Select * from user where idRegister='$id'";

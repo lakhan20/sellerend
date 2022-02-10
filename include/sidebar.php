@@ -68,6 +68,16 @@
             </span>
           </a>
         </li>
+
+        <li>
+          <a href="orders.php">
+            <i class="fa fa-th"></i> <span>Orders</span>
+            <span class="pull-right-container">
+              <!-- <small class="label pull-right bg-green">new</small> -->
+            </span>
+          </a>
+        </li>
+        
         <!-- <li class="treeview">
           <a href="#">
             <i class="fa fa-pie-chart"></i>
