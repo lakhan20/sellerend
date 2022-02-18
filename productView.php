@@ -1,3 +1,13 @@
+<!-- 
+<form method="">
+<select class="form-control">
+<option value="brand">brand</option>
+<option value="category">subcategory</option>
+
+</select>
+
+</form> -->
+
 <?php
 $id=$_COOKIE['idRegister'];
 $productSelectQuery="SELECT * FROM `product` WHERE User_idRegister=$id";
