@@ -1,39 +1,76 @@
-<!-- 
-<form method="">
-<select class="form-control">
-<option value="brand">brand</option>
-<option value="category">subcategory</option>
-
-</select>
-
-</form> -->
-
-<?php
+<?php  
+ include "include/connection.php";
 $id=$_COOKIE['idRegister'];
-$productSelectQuery="SELECT * FROM `product` WHERE User_idRegister=$id";
-$res=mysqli_query($conn,$productSelectQuery);
-if(mysqli_num_rows($res) >0){
-
-$str="<table class='table table-striped'>
-<thead>
-<tr><th>sr no</th><th>ProductName<th>description<th>brand<th>Price<th>Image<th>Update</tr></thead>";
- $cnt=1; 
- while($productRow=mysqli_fetch_assoc($res)){
   
-    $str.="<tbody><tr><td>".$cnt."</td><td>".$productRow["pname"]."</td><td>".$productRow["description"]."</td><td>"
-	.$productRow["brand"]."</td><td>".$productRow["price"]."</td><td>
-	<img src='".$productRow["image"]."' height='100' width='100'>"."</td><td>
-    <a href='ProductUpdate.php?id=".$productRow["idproduct"]."' class='btn btn-xs btn-info'><i class='ace-icon fa fa-check bigger-120'></i></a>"."</td>
+ $query ="SELECT * FROM product WHERE User_idRegister=$id ORDER BY idproduct DESC";  
+ $result = mysqli_query($conn, $query);  
+ ?>  
+ <!DOCTYPE html>  
+ <html>  
+      <head>  
+           <title>Webslesson Tutorial | Datatables Jquery Plugin with Php MySql and Bootstrap</title>  
+           <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>  
+           <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />  
+           <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>  
+           <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>            
+           <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css" />  
+    <style>
+         #d{
+              /* right-margin:"10px",
+              /* padding-left:"50px", */
+              /* padding-left:"50px";  */
+              padding: 10px 0px 100px 150px;
+          }
+          #a{
+               height:30px;
+          }
+    </style>
+          </head>  
+      <body>  
+           <br /><br />  
 
-    </tr>
-    ";
-    $cnt++;
+           <div class="container">  
+                <!-- <h3 align="center">Datatables Jquery Plugin with Php MySql and Bootstrap</h3>   -->
+                <br />  
+                <div id="d" class="table-responsive">  
+                     <table id="employee_data" class="table table-striped table-bordered">  
+                          <thead>  
+                               <tr>  
+                               <td>srNo</td>  
+                                    <td>ProductName</td>  
+                                    <td>description</td>  
+                                    <td>brand</td>  
+                                    <td>Price</td>  
+                                    <td>Image</td>  
+                                   <td>Update</td>
+                               </tr>  
+                          </thead>  
+                          <?php  
+                          $cnt=1;
+                          while($row = mysqli_fetch_array($result))  
+                          {  
+                               echo '  
+                               <tr>
+                               <td>'.$cnt.'</td>  
+                                    <td>'.$row["pname"].'</td>  
+                                    <td>'.$row["brand"].'</td>  
+                                    <td>'.$row["description"].'</td>  
+                                    <td>'.$row["price"].'</td> 
+                                    <td><img src="'.$row["image"].'" height="100" width="100">'.'</td></td>
+                                    <td><a href="ProductUpdate.php?id='.$row["idproduct"].'"  class=""><i  class="glyphicon glyphicon-pencil"></i></a>'.'</td>
 
-}
-    $str.="</tbody></table>";
-    echo $str;
-}
-    
-?>
-
-
+                                    </tr>  
+                               ';  
+                               $cnt++;
+                          }  
+                          ?>  
+                     </table>  
+                </div>  
+           </div>  
+      </body>  
+ </html>  
+ <script>  
+ $(document).ready(function(){  
+      $('#employee_data').DataTable();  
+ });  
+ </script>  

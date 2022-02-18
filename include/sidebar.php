@@ -78,6 +78,14 @@
           </a>
         </li>
         
+        <li>
+          <a href="logout.php">
+            <i class="glyphicon glyphicon-off"></i> <span>Logout</span>
+            <span class="pull-right-container">
+              <!-- <small class="label pull-right bg-green">new</small> -->
+            </span>
+          </a>
+        </li>
         <!-- <li class="treeview">
           <a href="#">
             <i class="fa fa-pie-chart"></i>

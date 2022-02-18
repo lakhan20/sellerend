@@ -107,11 +107,11 @@ include "include/connection.php";
           }
          ?>
          
-              <script>
+              <!-- <script>
                     function enabledisable(){
                     document.getElementById("inpt").disabled = true;
                     }
-                </script>
+                </script> -->
         <!-- //  $sql = "UPDATE employee ". "SET emp_salary = $emp_salary ". 
         //        "WHERE emp_id = $emp_id" ; -->
         <div class="col-md-9" >
@@ -127,14 +127,11 @@ include "include/connection.php";
                   <div class="form-group">
                     <label for="inputName" class="col-sm-2 control-label">Name</label>
 
-                    <?php 
-                    function endsbl(){
-                      
-                    }
-                     ?>
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" id="inpt" value=<?php echo $row['name'];  ?> name="name" >    
-                   
+                      <!-- <input type="text" class="form-control" id="inpt" value=<?php echo $row['name'];  ?> name="name" >    
+                    -->
+                    <input type="text" class="form-control" id="inpt"  name="name" value="<?php echo $row['name']; ?>" >    
+
                     </div>
                     
                     

@@ -59,7 +59,7 @@ include "connection.php";
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
-<div class="wrapper">
+<!-- <div class="wrapper"> -->
 
   <header class="main-header" id="f">
     <!-- Logo -->
@@ -97,9 +97,9 @@ include "connection.php";
               <div class="navbar-custom-menu">
               <ul class="nav navbar-nav">
                 <li class="dropdown user user-menu">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <a href="profile.php" class="dropdown-toggle" data-toggle="dropdown">
       
-              <span class="hidden-xs"> Welcome ' .  $row["name"] .' ..!! </span>
+              <span > Welcome ' .  $row["name"] .' ..!! </span>
               </a>
               ';
             
@@ -111,8 +111,8 @@ include "connection.php";
             <ul class="dropdown-menu">
              
            
-                  <small>Member since Nov. 2012</small>
-                </p> 
+                  <!-- <small>Member since Nov. 2012</small> -->
+              
               <!-- </li> -->
               <!-- Menu Footer-->
               <li class="user-footer">
@@ -127,13 +127,14 @@ include "connection.php";
                 </div>
               </li>
             </ul>
-          </li>
+          <!-- </li> -->
           <!-- Control Sidebar Toggle Button -->
-          <li>
+          <!-- <li>
             <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
           </li>
-        </ul>
+        </ul> -->
       </div>
     </nav>
+            </div>
   </header>
   
