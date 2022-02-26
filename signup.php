@@ -1,7 +1,7 @@
 <?php
 
 include 'partial/header.php';
-include 'partial/db_connect.php';
+include 'include/connectionsss.php';
  
 
 echo $_SERVER['REQUEST_METHOD'];
@@ -13,12 +13,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     $gst_no = $_POST['gst_no'];
     $pan_no = $_POST['pan_no'];
     $adhar_no = $_POST['adhar_no'];
-    $bank_a_no = $_POST['bank_a_no'];
+    // $bank_a_no = $_POST['bank_a_no'];
     $email = $_POST['email'];
     $address = $_POST['address'];
     $password = $_POST['password'];
 
-    $sql="INSERT INTO `user` (`email_id`, `password`, `name`, `bussiness_name`, `is_authorised`, `gst_number`, `mobile_number`, `pancard`, `addhar_card`, `address`, `is_seller`, `bankaccount_number`, `commissionn_rate`, `admin_idadmin`, `Bank_idBank`, `area_area_pincode`) VALUES ( '$email', '$password', '$name', '$b_name', NULL, '$gst_no', '$mobile_no', '$pan_no', '$adhar_no', '$address', NULL, '$bank_a_no', NULL, NULL, NULL, NULL)
+    $sql="INSERT INTO `user` (`email_id`, `password`, `name`, `bussiness_name`, `is_request`, `gst_number`, `mobile_number`, `pancard`, `addhar_card`, `address`, `is_seller`, `commissionn_rate`, `admin_idadmin`, `Bank_idBank`, `area_area_pincode`) VALUES ( '$email', '$password', '$name', '$b_name', NULL, '$gst_no', '$mobile_no', '$pan_no', '$adhar_no', '$address', NULL, NULL, NULL, NULL, NULL)
     ";
 
     $result=mysqli_query($conn,$sql);

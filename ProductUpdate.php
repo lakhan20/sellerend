@@ -156,6 +156,17 @@ include "include/connection.php";
                     </div>
                     
                   </div>
+                  
+                  <div class="form-group">
+                    <label for="inputName" class="col-sm-2 control-label">Image-2 :</label>
+
+                    
+                    <div class="col-sm-10">
+                    <img src=<?php echo $productSelectRow['image2'];?> height='100' width='100'>
+                      <input type="file" class="form-control" id="img" name="image2" value=<?php echo $productSelectRow['image2']?>>    
+                    </div>
+                    
+                  </div>
                   <div class="form-group">
                     <label for="inputName" class="col-sm-2 control-label" >HSN number :</label>
 
@@ -211,6 +222,14 @@ if(isset($_POST['updateproduct'])) {
    $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
    // echo "<br><br>".$target_file;
 
+   //image-2
+
+   $target_dir2 = "image-2/";
+   $target_file2 = $target_dir2 . basename($_FILES["image2"]["name"]);
+   echo $target_file2;
+   $uploadOk2 = 1;
+   $imageFileType2 = strtolower(pathinfo($target_file2,PATHINFO_EXTENSION));
+ 
    //    echo "updating...";
   $pname=$_POST['pname'];
   $bname=$_POST['bname'];
@@ -246,13 +265,37 @@ if(isset($_POST['updateproduct'])) {
    }
 
 }
+
+
+//image-2
+
+if($target_file2=="image-2/"){
+  $target_file2=$productSelectRow['image2'];
+}else{
+if($imageFileType2 != "jpg" && $imageFileType2 != "png" && $imageFileType2 != "jpeg"
+&& $imageFileType2 != "gif" ) {
+echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+$uploadOk2 = 0;
+}
+if($uploadOk2==0){
+    echo "file uploading failed...";
+}
+else{
+    if (move_uploaded_file($_FILES["image2"]["tmp_name"], $target_file2)) {
+        echo "The file ". htmlspecialchars( basename( $_FILES["image2"]["name"])). " has been uploaded.";
+      } else {
+        echo "Sorry, there was an error uploading your file.";
+      }
+}
+
+}
  
 
 
   $sql="UPDATE `product` SET `pname`='$pname' , `brand`='$bname' ,
    `minimum_set_qut-pur`=$min_set_per_qty , `quantity_of_1_set`=$qty_per_set,
    `MRP`=$mrp,`price`=$price,`description`='$description',`image`='$target_file',
-   `HSN_code`=$hsn,`GST_rate`=$gst WHERE `idproduct`=$productid";
+   `image2`='$target_file2', `HSN_code`=$hsn,`GST_rate`=$gst WHERE `idproduct`=$productid";
 // echo "<br>". $sql;
       $result=mysqli_query($conn,$sql);
 

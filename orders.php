@@ -38,7 +38,7 @@ if(mysqli_num_rows($res) >0){
     <tr>
     <th scope="col">SrNo.</th>
     <th scope="col">ProductName</th>
-    <th scope="col">Description</th> 
+    <th ssscope="col">Description</th> 
     <th scope="col">Image</th>
     <th scope="col">Qty</th>
     <th scope="col">OrderDate</th>

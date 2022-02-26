@@ -48,6 +48,15 @@ include "include/connection.php";
             $uploadOk = 1;
             $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
     
+
+          //image2
+          $target_dir2 = "image-2/";
+          $target_file2 = $target_dir2 . basename($_FILES["image2"]["name"]);
+          echo $target_file2;
+          $uploadOk2 = 1;
+          $imageFileType2 = strtolower(pathinfo($target_file2,PATHINFO_EXTENSION));
+  
+
             //    echo "updating...";
            $pname=$_POST['pname'];
            $bname=$_POST['bname'];
@@ -61,6 +70,7 @@ include "include/connection.php";
            $id=$_COOKIE["idRegister"];
           //  $subcatid=$_GET["subcategaryid"];
            $subcatid=$_POST["subcategoryname"];
+           $discount=$_POST['discount'];
 
           if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
             && $imageFileType != "gif" ) {
@@ -78,8 +88,26 @@ include "include/connection.php";
                   }
             }
 
+            //image2
+            
+          if($imageFileType2 != "jpg" && $imageFileType2 != "png" && $imageFileType2 != "jpeg"
+          && $imageFileType2 != "gif" ) {
+          echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+          $uploadOk2 = 0;
+          }
+          if($uploadOk2==0){
+              echo "file uploading failed...";
+          }
+          else{
+              if (move_uploaded_file($_FILES["image2"]["tmp_name"], $target_file2)) {
+                  echo "The file ". htmlspecialchars( basename( $_FILES["image2"]["name"])). " has been uploaded.";
+                } else {
+                  echo "Sorry, there was an error uploading your file.";
+                }
+          }
 
-           $sql="INSERT INTO `product`(`pname`,`brand`,`minimum_set_qut-pur`,`quantity_of_1_set`,`MRP`,`price`,`description`,`image`,`HSN_code`,`GST_rate`,`subcategory_idsubcategory`, `User_idRegister` )  VALUES ('$pname','$bname',$min_set_per_qty,$qty_per_set,$mrp,$price,'$description','$target_file',$hsn,$gst,$subcatid,$id)";
+
+           $sql="INSERT INTO `product`(`pname`,`brand`,`minimum_set_qut-pur`,`quantity_of_1_set`,`MRP`,`price`,`discount_rs`,`description`,`image`,`image2`,`HSN_code`,`GST_rate`,`subcategory_idsubcategory`, `User_idRegister` )  VALUES ('$pname','$bname',$min_set_per_qty,$qty_per_set,$mrp,$price,$discount,'$description','$target_file','$target_file2',$hsn,$gst,$subcatid,$id)";
 // echo "<br>". $sql;
                $result=mysqli_query($conn,$sql);
 
@@ -182,6 +210,16 @@ include "include/connection.php";
                     
                   </div>
                 
+                  <div class="form-group">
+                    <label for="inputName" class="col-sm-2 control-label">discount :</label>
+
+                    
+                    <div class="col-sm-10">
+                      <input type="number" class="form-control" id="inpt" name="discount">    
+                    </div>
+                    
+                  </div>
+                
                   
                   <div class="form-group">
                     <label for="inputExperience" class="col-sm-2 control-label">Description : </label>
@@ -198,6 +236,16 @@ include "include/connection.php";
                     
                     <div class="col-sm-10">
                       <input type="file" class="form-control" id="img" name="image">    
+                    </div>
+                    
+                  </div>
+                  
+                  <div class="form-group">
+                    <label for="inputName" class="col-sm-2 control-label" >Image2 :</label>
+
+                    
+                    <div class="col-sm-10">
+                      <input type="file" class="form-control" id="img" name="image2">    
                     </div>
                     
                   </div>
