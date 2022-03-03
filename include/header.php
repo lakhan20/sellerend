@@ -78,10 +78,13 @@ include "connection.php";
 
               <?php
 
-              if(empty( $_COOKIE["idRegister"] )){
+
+              if(empty( $_COOKIE["idRegister"] ) || $_COOKIE['isSeller']==0){
                 header("Location: index.php");
               }
+
               else{
+                // echo $_COOKIE['isSeller'];
                 $id=$_COOKIE["idRegister"];
                
 

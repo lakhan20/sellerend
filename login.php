@@ -24,6 +24,8 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
     if($num==1){
         $row=mysqli_fetch_assoc($result);
         setcookie("idRegister",$row['idRegister'],time() + 86400,"/");
+        setcookie("isSeller",$row['is_seller'],time() + 86400,"/");
+
         // echo $row['idRegister'];
         $login = true;
         
