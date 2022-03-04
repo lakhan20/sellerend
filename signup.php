@@ -1,7 +1,7 @@
 <?php
 
 include 'partial/header.php';
-include 'include/connectionsss.php';
+include 'include/connection.php';
  
 
 echo $_SERVER['REQUEST_METHOD'];

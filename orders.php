@@ -26,8 +26,7 @@ $id=$_COOKIE["idRegister"];
 // $selectSalesOrder="SELECT * FROM `sales_product_details` JOIN sales_orders JOIN product WHERE sales_orders.User_idRegister=$id";
 $selectSalesOrder="SELECT * FROM sales_product_details LEFT OUTER JOIN 
 sales_orders ON sales_product_details.sales_orders_idsales_orders=idsales_orders 
-LEFT OUTER JOIN product on product_idproduct=product.idproduct
- WHERE sales_orders.User_idRegister=$id";
+LEFT OUTER JOIN product on product_idproduct=product.idproduct";
 $res=mysqli_query($conn,$selectSalesOrder);
 // echo "----------".$res;
 
