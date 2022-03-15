@@ -1,100 +1,121 @@
+<?php  
+include "include/header.php";
+include "include/sidebar.php";
+ include "include/connection.php";
+$id=$_COOKIE['idRegister'];
+  
+ $query ="SELECT DISTINCT  sales_orders.idsales_orders,sales_orders.*  FROM sales_orders  JOIN sales_product_details
+      ON sales_orders.idsales_orders=sales_product_details.sales_orders_idsales_orders JOIN product 
+      ON sales_product_details.product_idproduct=product.idproduct WHERE product.User_idRegister=$id";  
+ $result = mysqli_query($conn, $query);  
+ ?>  
+ <!DOCTYPE html>  
+ <html>  
+      <head>  
+           <title>Webslesson Tutorial | Datatables Jquery Plugin with Php MySql and Bootstrap</title>  
+           <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>  
+           <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />  
+           <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>  
+           <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>            
+           <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css" />  
+    <style>
+         #d{
+              /* right-margin:"10px",
+              /* padding-left:"50px", */
+              /* padding-left:"50px";  */
+              padding: 10px 100px 100px 90px;
+          }
+          #a{
+               height:30px;
+          }
+    </style>
+          </head>  
+      <body>  
+           <br /><br />  
 
-<head>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
-</head>
-<?php
-// include "include/header.php";
-// include "include/sidebar.php";
-include "include/connection.php";
-?> 
+           <div class="container">  
+                <!-- <h3 align="center">Datatables Jquery Plugin with Php MySql and Bootstrap</h3>   -->
+                <br />  
+                <div id="d" class="table-responsive">  
+                     <table id="employee_data" class="table table-striped table-bordered">  
+                          <thead>  
+                               <tr>  
+                                    <td>order id</td>  
+                                    <td>order date</td>  
+                                    <td>buyer address</td>  
+                                    <td>last shipping date</td>  
+                                    <td>taxable amount</td>  
+                                    <td>tax amount</td>  
+                                   <td>total amount</td>
+                                   <td>cancel date</td>
+                                   <td>See More Details</td>
+                                   <td>Accept order</td>
+                                   <td>Cancel order</td>
 
+                               </tr>  
+                          </thead>  
+                          <?php  
+                          while($row = mysqli_fetch_array($result))  
+                          {  
+                               echo '  
+                               <tr>
+                              
+                                    <td>'.$row["idsales_orders"].'</td>  
+                                    <td>'.$row["order_date"].'</td>  
+                                    <td>'.$row["buyer_address"].'</td>  
+                                    <td>'.$row["last_shipping_date"].'</td> 
+                                    <td>'.$row["taxable_amount"].'</td> 
+                                    <td>'.$row["tax_amount"].'</td> 
+                                    <td>'.$row["total_amount"].'</td> 
+                                    <td>'.$row["cancel_date"].'</td> 
+                                    <th scope="row"><a href="showOrderDetails.php">See More</th>
 
-<?php
+                                ';
+                                    if($row['Is_canceled']==NULL){
+                                   echo '
+                                   <th scope="row"><a onClick=\'javascript: return confirm("Are you sure you want to accept this order?");\' href="AcceptCancel.php?salesOrderId='.$row['idsales_orders'].'&isCanceled=0" class="btn btn-success" >Accept Order</a></th>
+                                        <th scope="row"><a onClick=\'javascript: return confirm("Are you sure you want to cancel this order?");\'  href="AcceptCancel.php?salesOrderId='.$row['idsales_orders'].'&isCanceled=1" class="btn btn-danger" >Cancel Order</a></th>';    
+                                       
+                                   }    
+                                        elseif($row['Is_canceled']==1){
+                                         echo '
+                                         <th scope="row"></th>
+                                         <th scope="row"><button type="button" class="btn btn-danger" disabled> Order Cancelled</button></th>  
+                                         ';
+                                        }
+                                        
+                                        
+                                        elseif($row['Is_canceled']==0){
+                                            echo '
+                                         <th scope="row"><button type="button" class="btn btn-success" disabled>Order Accepted</button></th>
+                                         <th scope="row"></th>
+                                         ';
+                                        }
+                                
+                                    echo'</tr>';  
+                                
+                              
+                          }  
+                          ?>  
+                     </table>  
+                </div>  
+           </div>  
+      </body>  
+ </html>  
+ <script>  
+ $(document).ready(function(){  
+      $('#employee_data').DataTable();  
+ });  
 
-// echo $_COOKIE["idRegister"];
-// include "include/header.php";
-// include "include/sidebar.php";
-
-//  include "include/header.php";
-// include "include/sidebar.php";
-include "include/connection.php";
-$id=$_COOKIE["idRegister"];
-// $selectSalesOrder="SELECT * FROM `sales_product_details`JOIN sales_orders ON sales_product_details.sales_orders_idsales_orders=sales_orders.idsales_orders
-//   JOIN product ON sales_product_details.product_idproduct=product.idproduct WHERE product.Sales_idRegister=$id";
-
-// $selectSalesOrder ="SELECT * FROM `sales_product_details` JOIN sales_orders JOIN product WHERE sales_orders.User_idRegister=$id AND product.Seller_idRegister=$id";
-// $selectSalesOrder="SELECT * FROM `sales_product_details` JOIN sales_orders JOIN product WHERE sales_orders.User_idRegister=$id";
-$selectSalesOrder="SELECT * FROM sales_product_details LEFT OUTER JOIN 
-sales_orders ON sales_product_details.sales_orders_idsales_orders=idsales_orders 
-LEFT OUTER JOIN product on product_idproduct=product.idproduct";
-$res=mysqli_query($conn,$selectSalesOrder);
-// echo "----------".$res;
-
-if(mysqli_num_rows($res) >0){
-    $cnt=1;
-    $str='<table class="table table-striped">
-    <thead>
-    <tr>
-    <th scope="col">SrNo.</th>
-    <th scope="col">ProductName</th>
-    <th ssscope="col">Description</th> 
-    <th scope="col">Image</th>
-    <th scope="col">Qty</th>
-    <th scope="col">OrderDate</th>
-    <th scope="col">#</th>
-    <th scope="col">AcceptOrder</th>
-    <th scope="col">CancelOrder</th>
-     </tr>
-    </thead>
-    ';
-    while($saleOrderRow=mysqli_fetch_assoc($res)){
-        
-        $str.='<tbody>
-        <th scope="row">'.$cnt.'</th>
-        <th scope="row">'.$saleOrderRow['pname'].'</th>
-        <th scope="row">'.$saleOrderRow['description'].'</th>
-        <th scope="row"><img src="'.$saleOrderRow['image'].' " height="100" width="100"></th>
-        <th scope="row">'.$saleOrderRow['Qty'].'</th>
-        <th scope="row">'.$saleOrderRow['order_date'].'</th>
-        <th scope="row"><a href="showOrderDetail.php?">See More</th>
-        ';
-    //    echo $saleOrderRow['Is_canceled'];
-        if($saleOrderRow['Is_canceled']==NULL){
-        $str.='<th scope="row"><a href="AcceptCancel.php?salesOrderId='.$saleOrderRow['idsales_orders'].'&isCanceled=0" class="btn btn-success" >Accept</a></th>
-        <th scope="row"><a href="AcceptCancel.php?salesOrderId='.$saleOrderRow['idsales_orders'].'&isCanceled=1" class="btn btn-danger" >Cancel Order</a></th>';    
-        }    
-        elseif($saleOrderRow['Is_canceled']==1){
-         $str.='
-         <th scope="row"></th>
-         <th scope="row"><button type="button" class="btn btn-danger" disabled> Order Cancelled</button></th>  
-         ';
-        }
-        
-        
-        elseif($saleOrderRow['Is_canceled']==0){
-            $str.='
-         <th scope="row"><button type="button" class="btn btn-success" disabled>Order Accepted</button></th>
-         <th scope="row"></th>
-         ';
-        }
-        // $str.= '<th scope="row"><a href="#">See More</th>';
-
-        // echo $saleOrderRow['Is_canceled'];
-        $cnt++;
-        // echo $saleOrderRow['pname'] . "<br>";
-        // echo $saleOrderRow['brand'] . "<br>";
-        // echo "<br>".$saleOrderRow['Price'];
-        // echo "<br>".$saleOrderRow['net_amount'];
-// echo  "<br>".date("l jS \of F Y h:i:s A");
-    }
-    $str.="</tbody></table>";
-    echo $str;
-
+function confirmbox(){
+     if(confirm("Are you sure You want to accept this order ?")){
+return 1;
+     }
+     else{
+      return 0;
+       console.log("elsee...");
+          window.location.href = "orders.php";
+     }
 }
 
-?> 
-
-
-
-
-
+ </script>  

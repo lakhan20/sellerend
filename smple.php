@@ -4,7 +4,9 @@ include "include/sidebar.php";
  include "include/connection.php";
 $id=$_COOKIE['idRegister'];
   
- $query ="SELECT DISTINCT  sales_orders.idsales_orders,sales_orders.*  FROM sales_orders  JOIN sales_product_details ON sales_orders.idsales_orders=sales_product_details.sales_orders_idsales_orders JOIN product ON sales_product_details.product_idproduct=product.idproduct";  
+ $query ="SELECT DISTINCT  sales_orders.idsales_orders,sales_orders.*  FROM sales_orders  JOIN sales_product_details
+      ON sales_orders.idsales_orders=sales_product_details.sales_orders_idsales_orders JOIN product 
+      ON sales_product_details.product_idproduct=product.idproduct WHERE product.User_idRegister=$i";  
  $result = mysqli_query($conn, $query);  
  ?>  
  <!DOCTYPE html>  
