@@ -42,8 +42,7 @@ echo '
         <tr class="active">
             <th><h4><b>ORDER No. : ODR00' . $oid . '</b></h4>
           </th>
-</tbody>
-</table>
+
           ';
 
           
@@ -59,6 +58,65 @@ echo '
             $rowss = mysqli_fetch_assoc($result22);
             
             ?>
+            
+        
+            <?php
+            
+$summ = 0;
+$total = 0;
+$final = 0;
+echo "
+
+";
+while ($row11 = mysqli_fetch_assoc($result22)) {
+// echo $row11['Product_Name'] . "<br>";
+// echo $row11['Product_qty'] . "<br>";
+// echo "<br>".$row11['Product_Price'] . "<br>";
+// echo "<br>".$row11['Total_Amount'] . "<br>";
+$proid = $row11['product_idproduct'];
+$qty = $row11['Qty'];
+$taxable = $row11['Price'];
+$total1 = $qty * $taxable;
+$total = $total + $total1;
+$summ = ($total * 12) / 100;
+$final = $total + $summ;
+echo '
+    <tr>
+        <td>
+            <img src="' . $row11['image'] . '" alt="" width="100px" height="100px"/>
+        </td>
+        <td>
+            <span><b>Product Name : </b>' . $row11['pname'] . '</span><br/>
+             <span><b>Details :</b>' . $row11['description'] . '</span><br/>
+            </td>
+        <td>
+        <span><b>Quantity : </b>' . $row11['Qty'] . '</span><br/>
+        <span><b>Product Price : </b>₹ ' . $row11['Price'] . '</span><br/>
+        </td>
+       
+    </tr>';
+}
+
+
+echo '
+<tr>
+<td colspan="2" align="right"><b>Taxable Amount :</b></td>
+<td><b>₹ ' . $total . '</b><small><b>.00</b></small></td>
+</tr>
+<tr>
+        <td colspan="2" align="right"><b>Gst Amount :</b></td>
+        <td><b>₹ ' . $summ . '</b><small><b>.00</b></small></td>
+    </tr>
+    <tr>
+        <td colspan="2" align="right"><b>Total Amount :</b></td>
+        <td><b>₹ ' . $final . '</b><small><b>.00</b></small></td>
+    </tr>
+</tbody>
+</table>';
+
+?>
+            
+            <hr>
             <?php
             // $c=var_dump($rowss['Is_canceled']);
            
@@ -104,61 +162,6 @@ echo '
                     </div>
                 </div>
             </form>
-            <hr>
-            <?php
-            
-$summ = 0;
-$total = 0;
-$final = 0;
-while ($row11 = mysqli_fetch_assoc($result22)) {
-// echo $row11['Product_Name'] . "<br>";
-// echo $row11['Product_qty'] . "<br>";
-// echo "<br>".$row11['Product_Price'] . "<br>";
-// echo "<br>".$row11['Total_Amount'] . "<br>";
-$proid = $row11['product_idproduct'];
-$qty = $row11['Qty'];
-$taxable = $row11['Price'];
-$total1 = $qty * $taxable;
-$total = $total + $total1;
-$summ = ($total * 12) / 100;
-$final = $total + $summ;
-echo '
-    <tr>
-        <td>
-            <img src="' . $row11['image'] . '" alt="" width="100px" height="100px"/>
-        </td>
-        <td>
-            <span><b>Product Name : </b>' . $row11['pname'] . '</span><br/>
-             <span><b>Details :</b>' . $row11['description'] . '</span><br/>
-            </td>
-        <td>
-        <span><b>Quantity : </b>' . $row11['Qty'] . '</span><br/>
-        <span><b>Product Price : </b>₹ ' . $row11['Price'] . '</span><br/>
-       
-        </td>
-       
-    </tr>';
-}
-
-
-echo '
-<tr>
-<td colspan="2" align="right"><b>Taxable Amount :</b></td>
-<td><b>₹ ' . $total . '</b><small><b>.00</b></small></td>
-</tr>
-<tr>
-        <td colspan="2" align="right"><b>Gst Amount :</b></td>
-        <td><b>₹ ' . $summ . '</b><small><b>.00</b></small></td>
-    </tr>
-    <tr>
-        <td colspan="2" align="right"><b>Total Amount :</b></td>
-        <td><b>₹ ' . $final . '</b><small><b>.00</b></small></td>
-    </tr>
-</tbody>
-</table>';
-
-?>
-            ?>
             <?php
             }
             ?>
