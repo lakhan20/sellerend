@@ -1,80 +1,11 @@
 <?php
 include "include/header.php";
 include "include/sidebar.php";
-include "include/connection.php";
-?> 
 
-<head>
-<style>
-  #x{
-    float:right;
-  }
-  #x{
-    float:right;
-  }
-</style>
- 
-</head>
- 
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <h1>
-        User Profile
-      </h1>
-      <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-       
-        <li class="active">User profile</li>
-      </ol>
-    </section>
+?>
 
-    <!-- Main content -->
-    <section class="content">
-
-      <div class="row">
-        <div class="col-md-3">
-
-          <!-- Profile Image -->
-          <div class="box box-primary">
-            <div class="box-body box-profile">
-
-              <h3 class="profile-username text-center"><?php echo $row['bussiness_name']; ?></h3>
-
-              <p class="text-muted text-center"><?php echo $row['name'];  ?></p>
-            </div>
-            <!-- /.box-body -->
-          </div>
-          <!-- /.box -->
-
-          <!-- About Me Box -->
-          <!-- <div class="box box-primary">
-            <div class="box-header with-border">
-              <h3 class="box-title">About Me</h3>
-            </div>
-            /.box-header -->
-            <!-- <div class="box-body">
-              <strong><i class="fa fa-book margin-r-5"></i> Education</strong>
-
-              <p class="text-muted">
-                B.C.A from the Gujrat University
-              </p>
-
-              <hr>
-
-              <strong><i class="fa fa-map-marker margin-r-5"></i> Location</strong>
-
-              <p class="text-muted">Navrangpura,Ahmedabad</p>
-
-            </div> -->
-            <!-- /.box-body -->
-          </div>
-          <!-- /.box -->
-        </div>
-        <!-- /.col -->
-        <?php
-         if(isset($_POST['update'])) {
+<?php
+         if(isset($_POST['updateprofile'])) {
            echo "updating...";
            $name=$_POST['name'];
            $email=$_POST['email'];
@@ -106,102 +37,72 @@ include "include/connection.php";
 
           }
          ?>
-         
-              <!-- <script>
-                    function enabledisable(){
-                    document.getElementById("inpt").disabled = true;
-                    }
-                </script> -->
-        <!-- //  $sql = "UPDATE employee ". "SET emp_salary = $emp_salary ". 
-        //        "WHERE emp_id = $emp_id" ; -->
-        <div class="col-md-9" >
-          <div class="nav-tabs-custom">
-            <ul class="nav nav-tabs">
-              <li><b><h1>&nbsp;&nbsp;<u>Update Your Details</h1></b></u></li>
-            </ul>
-            <div class="tab-content" >
-              <div class="active tab-pane" id="activity">
+<body>
+    
+<div class="content-wrapper">
+<section class="content-header">
+    <h1>Manage Profile</h1>
+    <hr>
+</section>
+<section class="content">
 
-              <div class="tab-pane" id="settings">
-                <form class="form-horizontal" method ="post">
-                  <div class="form-group">
-                    <label for="inputName" class="col-sm-2 control-label">Name</label>
-
-                    <div class="col-sm-10">
-                      <!-- <input type="text" class="form-control" id="inpt" value=<?php echo $row['name'];  ?> name="name" >    
-                    -->
-                    <input type="text" class="form-control" id="inpt"  name="name" value="<?php echo $row['name']; ?>" >    
-
-                    </div>
-                    
-                    
-                  </div>
-                  
-                  <div class="form-group">
-                    <label for="inputEmail" class="col-sm-2 control-label">Email</label>
-
-                    <div class="col-sm-10">
-                      <input type="email" class="form-control" id="inputEmail" value=<?php echo $row['email_id'];  ?> name="email">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="inputName" class="col-sm-2 control-label">Gst_number</label>
-
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control" id="inputName" value=<?php echo $row['gst_number'];  ?> name="gstnumber"> 
-                    </div>
-                  </div>
-                  
-                  <div class="form-group">
-                    <label for="inputName" class="col-sm-2 control-label">Pan_number</label>
-
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control" id="inputName" value=<?php echo $row['pancard'];  ?> name="pannumber"> 
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="inputName" class="col-sm-2 control-label">Aadhar_number</label>
-
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control" id="inputName" value=<?php echo $row['addhar_card'];  ?> name="aadharnumber"> 
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="inputExperience" class="col-sm-2 control-label">Address</label>
+<form method="post">
+<div class="form-group row">
+                <label for="inputEmail3" class="col-sm-2 col-form-label">Name : </label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="name" placeholder="" name="name" required value="<?php echo $row['name']; ?>">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="inputEmail3" class="col-sm-2 col-form-label">Email : </label>
+                <div class="col-sm-10">
+                    <input type="email" class="form-control" id="name" placeholder="" name="email" required value="<?php echo $row['email_id']; ?>" disabled>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="inputEmail3" class="col-sm-2 col-form-label">GST Number : </label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="name" placeholder="" name="gstnumber" required value="<?php echo $row['gst_number']; ?>" >
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="inputEmail3" class="col-sm-2 col-form-label">Pan Number : </label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="name" placeholder="" name="pannumber" required value="<?php echo $row['pancard']; ?>" >
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="inputEmail3" class="col-sm-2 col-form-label">Adhar Number : </label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="name" placeholder="" name="aadharnumber" required value="<?php echo $row['addhar_card']; ?>" >
+                </div>
+            </div>
+            <div class="form-group row">
+                    <label for="inputExperience" class="col-sm-2 col-form-label">Address :</label>
 
                     <div class="col-sm-10">
                       <textarea class="form-control" id="inputExperience" name="address"><?php echo $row['address'];  ?></textarea>
                     </div>
                   </div>
-                  <div class="form-group">
-                    <label for="inputSkills" class="col-sm-2 control-label">Mobile_number</label>
-
-                    <div class="col-sm-10">
-                      <input type="number" class="form-control" id="inputSkills" value=<?php echo $row['mobile_number'];?>  name="mobilenumber" >
-                    </div>
-                  </div>
-      
-                  <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                      <button type="submit" class="btn btn-success" name="update">Update</button>
-                    </div>
-                  </div>
-                </form>
-              </div>
-              <!-- /.tab-pane -->
+                  <div class="form-group row">
+                <label for="inputEmail3" class="col-sm-2 col-form-label">Mobile Number : </label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="name" placeholder="" name="mobilenumber" required value="<?php echo $row['addhar_card']; ?>" >
+                </div>
             </div>
-            <!-- /.tab-content -->
-          </div>
-          <!-- /.nav-tabs-custom -->
-        </div>
-        <!-- /.col -->
-      </div>
-      <!-- /.row -->
 
-    </section>
-    <!-- /.content -->
+            <div class="form-group row">
+    <div class="col-sm-10">
+      <button type="submit" class="btn btn-success" name="updateprofile">Update Profile</button>
+    </div>
   </div>
-  <!-- /.content-wrapper -->
- <?php
-  include "include/footer.php"
-  ?>
+</form>
+
+</section>
+</div>
+</body>
+
+<?php
+include "include/footer.php";
+
+?>

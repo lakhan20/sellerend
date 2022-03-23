@@ -10,9 +10,10 @@
 
 ?>
 <select class="form-control" name="subcategoryname" id="subcategoryname"  onchange="select_subcategory(this.value)">
-
+<option value="" disabled selected>Select Sub category</option>
 <?php
  while($row=mysqli_fetch_array($res)){
+
     echo '<option value='.$row["idsubcategory"].'>';
     echo $row["subcategoryname"];
     echo "</option>";

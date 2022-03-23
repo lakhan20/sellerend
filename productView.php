@@ -14,22 +14,14 @@ $id=$_COOKIE['idRegister'];
            <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>  
            <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>            
            <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css" />  
-    <style>
-         #d{
-              /* right-margin:"10px",
-              /* padding-left:"50px", */
-              /* padding-left:"50px";  */
-              padding: 10px 0px 100px 150px;
-          }
-          #a{
-               height:30px;
-          }
-    </style>
+   
           </head>  
       <body>  
            <br /><br />  
 
-           <div class="container">  
+           <section class="content">
+
+           <!-- <div class="container">   -->
                 <!-- <h3 align="center">Datatables Jquery Plugin with Php MySql and Bootstrap</h3>   -->
                 <br />  
                 <div id="d" class="table-responsive">  
@@ -51,7 +43,7 @@ $id=$_COOKIE['idRegister'];
                           {  
                                echo '  
                                <tr>
-                               <td>'.$cnt.'</td>  
+                                   <td>'.$cnt.'</td>  
                                     <td>'.$row["pname"].'</td>  
                                     <td>'.$row["brand"].'</td>  
                                     <td>'.$row["description"].'</td>  
@@ -66,8 +58,10 @@ $id=$_COOKIE['idRegister'];
                           ?>  
                      </table>  
                 </div>  
-           </div>  
-      </body>  
+           <!-- </div>   -->
+           </section>
+
+          </body>  
  </html>  
  <script>  
  $(document).ready(function(){  
